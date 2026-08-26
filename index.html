@@ -6,11 +6,14 @@
 <title>UGC NET General Paper</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<button class="menu-toggle" id="menuToggle" aria-label="Toggle filters menu">☰</button>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle filters menu" aria-expanded="false">
+  <i class="fa-solid fa-bars" id="menuToggleIcon" aria-hidden="true"></i>
+</button>
 <div class="backdrop" id="backdrop"></div>
 
 <div class="app">
@@ -18,7 +21,8 @@
   <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
-      <span class="eyebrow">UGC NET - General Paper</span>
+      <h1>UGC NET</h1>
+      <h1>General Paper</h1>
     </div>
 
     <div class="mode-tabs">

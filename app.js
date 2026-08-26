@@ -47,9 +47,17 @@ function switchView(id) {
   });
 }
 
+function setSidebarOpen(open) {
+  document.getElementById('sidebar').classList.toggle('open', open);
+  document.getElementById('backdrop').classList.toggle('show', open);
+  document.getElementById('menuToggle').setAttribute('aria-expanded', String(open));
+  const icon = document.getElementById('menuToggleIcon');
+  icon.classList.toggle('fa-bars', !open);
+  icon.classList.toggle('fa-xmark', open);
+}
+
 function closeSidebarOnMobile() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('backdrop').classList.remove('show');
+  setSidebarOpen(false);
 }
 
 /* ---------------------------------------------------------
@@ -684,8 +692,8 @@ function setTab(which) {
 
 function wireStaticEvents() {
   document.getElementById('menuToggle').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.add('open');
-    document.getElementById('backdrop').classList.add('show');
+    const isOpen = document.getElementById('sidebar').classList.contains('open');
+    setSidebarOpen(!isOpen);
   });
   document.getElementById('backdrop').addEventListener('click', closeSidebarOnMobile);
 
