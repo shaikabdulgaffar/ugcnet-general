@@ -731,11 +731,11 @@ function wireStaticEvents() {
    --------------------------------------------------------- */
 async function init() {
   try {
-    State.manifest = await fetchJSON('/manifest.json');
+    State.manifest = await fetchJSON('manifest.json');
   } catch (err) {
     document.getElementById('questionList').innerHTML = `<div class="empty-state">
-      <h3>Could not load data/manifest.json</h3>
-      <p>Serve this folder over HTTP (a local server or GitHub Pages) rather than opening index.html directly as a file, and make sure data/manifest.json exists.</p></div>`;
+      <h3>Could not load manifest.json</h3>
+      <p>Serve this folder over HTTP (a local server or GitHub Pages) rather than opening index.html directly as a file, and make sure manifest.json exists.</p></div>`;
     return;
   }
 
