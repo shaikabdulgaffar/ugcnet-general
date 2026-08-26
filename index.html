@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UGC NET General Paper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle filters menu">☰</button>
+<div class="backdrop" id="backdrop"></div>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="eyebrow">UGC NET - General Paper</span>
+    </div>
+
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="tabBrowse" type="button">Browse</button>
+      <button class="mode-tab" id="tabTest" type="button">Practice Test</button>
+    </div>
+
+    <div class="sidebar-search">
+      <input type="search" id="searchBox" placeholder="Search question text…">
+    </div>
+
+    <div class="filter-group" id="grpYear">
+      <div class="filter-group-header" data-target="grpYear">
+        <button class="fg-title-btn" type="button" data-target="grpYear">
+          <span>Year</span><span class="chev">▾</span>
+        </button>
+        <label class="select-all-row" title="Select all / none">
+          <input type="checkbox" data-selectall="year" checked><span>All</span>
+        </label>
+      </div>
+      <div class="filter-group-body" id="yearFilterBody"></div>
+    </div>
+
+    <div class="filter-group" id="grpSession">
+      <div class="filter-group-header" data-target="grpSession">
+        <button class="fg-title-btn" type="button" data-target="grpSession">
+          <span>Session</span><span class="chev">▾</span>
+        </button>
+        <label class="select-all-row" title="Select all / none">
+          <input type="checkbox" data-selectall="session" checked><span>All</span>
+        </label>
+      </div>
+      <div class="filter-group-body" id="sessionFilterBody"></div>
+    </div>
+
+    <div class="filter-group" id="grpSubject">
+      <div class="filter-group-header" data-target="grpSubject">
+        <button class="fg-title-btn" type="button" data-target="grpSubject">
+          <span>Subject</span><span class="chev">▾</span>
+        </button>
+        <label class="select-all-row" title="Select all / none">
+          <input type="checkbox" data-selectall="subject" checked><span>All</span>
+        </label>
+      </div>
+      <div class="filter-group-body" id="subjectFilterBody"></div>
+    </div>
+
+    <div class="filter-group" id="grpUnit">
+      <div class="filter-group-header" data-target="grpUnit">
+        <button class="fg-title-btn" type="button" data-target="grpUnit">
+          <span>Unit</span><span class="chev">▾</span>
+        </button>
+        <label class="select-all-row" title="Select all / none">
+          <input type="checkbox" data-selectall="unit" checked><span>All</span>
+        </label>
+      </div>
+      <div class="filter-group-body filter-group-body--compact" id="unitFilterBody"></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="stat" id="loadedStat">Loading question bank…</span>
+      <button class="btn-reset" id="resetFilters" type="button">Reset filters</button>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+
+    <!-- ---- Browse view ---- -->
+    <section id="browseView">
+      <div class="main-header">
+        <h2>Browse Questions</h2>
+        <span class="result-count" id="resultCount"></span>
+      </div>
+      <div id="questionList"></div>
+    </section>
+
+    <!-- ---- Test config view ---- -->
+    <section id="testConfigView" class="hidden">
+      <div class="main-header"><h2>Practice Test</h2></div>
+
+      <div class="field">
+        <label>Include years in the question pool</label>
+        <div class="years-row" id="testYearChips"></div>
+      </div>
+
+      <div class="test-cards">
+        <div class="test-card">
+          <h3>Full Mock Test</h3>
+          <p class="desc">5 random questions from each of the 10 units (up to 50 questions) — mirrors the real Paper 1 pattern.</p>
+          <button class="btn btn-accent" id="startFullMock" type="button">Start Full Mock</button>
+        </div>
+
+        <div class="test-card">
+          <h3>Custom Practice</h3>
+          <p class="desc">Pick the units and how many questions you want, drawn randomly from the pool above.</p>
+          <div class="field">
+            <label for="customCount">Number of questions</label>
+            <input type="number" id="customCount" min="1" max="100" value="20">
+          </div>
+          <div class="field">
+            <label>Units to include</label>
+            <div class="chip-set" id="customUnitChips"></div>
+          </div>
+          <button class="btn btn-primary" id="startCustom" type="button">Start Custom Test</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---- Test run view ---- -->
+    <section id="testRunView" class="hidden">
+      <div class="test-topbar">
+        <div class="test-progress">Question <b id="qPos">1</b> of <b id="qTotal">50</b></div>
+        <div class="test-timer" id="testTimer">00:00</div>
+        <button class="btn btn-primary" id="submitTest" type="button">Submit Test</button>
+      </div>
+      <div class="qnav-grid" id="qnavGrid"></div>
+      <div id="testQuestionHolder"></div>
+      <div class="test-nav-actions">
+        <button class="btn btn-outline" id="prevQ" type="button">← Previous</button>
+        <button class="btn btn-outline" id="nextQ" type="button">Next →</button>
+      </div>
+    </section>
+
+    <!-- ---- Results view ---- -->
+    <section id="testResultView" class="hidden">
+      <div class="main-header"><h2>Test Results</h2></div>
+      <div class="score-card" id="scoreCard"></div>
+      <div class="unit-breakdown" id="unitBreakdown"></div>
+      <div class="q-actions" style="margin-bottom:18px;">
+        <button class="btn btn-primary" id="retakeTest" type="button">Retake this test</button>
+        <button class="btn btn-outline" id="backToSetup" type="button">Back to test setup</button>
+      </div>
+      <h3 style="margin-bottom:12px;">Review answers</h3>
+      <div id="reviewList"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

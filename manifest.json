@@ -1,0 +1,18 @@
+{
+  "units": [
+    { "id": 1,  "name": "Teaching Aptitude" },
+    { "id": 2,  "name": "Research Aptitude" },
+    { "id": 3,  "name": "Comprehension" },
+    { "id": 4,  "name": "Communication" },
+    { "id": 5,  "name": "Mathematical Reasoning & Aptitude" },
+    { "id": 6,  "name": "Logical Reasoning" },
+    { "id": 7,  "name": "Data Interpretation" },
+    { "id": 8,  "name": "ICT (Information & Communication Technology)" },
+    { "id": 9,  "name": "People, Development & Environment" },
+    { "id": 10, "name": "Higher Education System" }
+  ],
+  "years": [
+    { "year": 2025, "file": "2025.json" },
+    { "year": 2026, "file": "2026.json" }
+  ]
+}
