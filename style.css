@@ -234,8 +234,9 @@ button { font-family: inherit; }
   border-top: 1px solid rgba(255,255,255,0.08);
   font-size: 12px;
   color: #9096B3;
+  text-align: center;
 }
-.sidebar-footer .stat { font-family: var(--font-mono); color: #E9EBF5; }
+.sidebar-footer .stat { display: block; font-family: var(--font-mono); color: #E9EBF5; }
 .btn-reset {
   margin-top: 10px;
   width: 100%;

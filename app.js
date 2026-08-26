@@ -768,7 +768,7 @@ async function init() {
   });
 
   document.getElementById('loadedStat').textContent =
-    `${State.allQuestions.length} question(s) loaded across ${yearFiles.length} year file(s)`;
+    `${State.allQuestions.length} questions loaded from ${yearFiles.length} files`;
 
   buildFilterUI();
   buildTestConfigUI();
